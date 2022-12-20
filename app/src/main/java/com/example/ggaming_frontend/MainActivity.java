@@ -65,15 +65,15 @@ public class MainActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                         navigationView.getMenu().findItem(R.id.action_home).setChecked(true);
-
+                        break;
 
                     case 1:
                         navigationView.getMenu().findItem(R.id.action_my_games).setChecked(true);
-
+                        break;
 
                     case 2:
                         navigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
-
+                        break;
 
                 }
 
