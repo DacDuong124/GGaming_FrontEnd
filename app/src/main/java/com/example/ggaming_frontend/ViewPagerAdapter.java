@@ -1,5 +1,7 @@
 package com.example.ggaming_frontend;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -9,10 +11,17 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+    private Fragment mCurrentFragment;
 
+    public Fragment getCurrentFragment() {
+        return mCurrentFragment;
+    }
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm) {
-        super(fm);
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+
+        super.setPrimaryItem(container, position, object);
+        mCurrentFragment = ((Fragment) object);
     }
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {

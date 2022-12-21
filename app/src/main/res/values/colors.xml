@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Theme App Colors-->
     <color name="cordovan">#984447</color>
     <color name="uranian_blue_50">#ECEEFE</color>
     <color name="uranian_blue">#ADD9F4</color>
     <color name="queen_blue">#476C9B</color>
     <color name="steel_teal">#468C98</color>
     <color name="rich_black">#101419</color>
+
+    <!-- Utility Colors-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="green_500">#18A957</color>
     <color name="grey_500">#12767680</color>
     <color name="grey_900">#323232</color>
     <color name="grey_400">#FFBDBDBD</color>

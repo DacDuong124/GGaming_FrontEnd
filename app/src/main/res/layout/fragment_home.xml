@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/queen_blue"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="16dp"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is Home"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="48dp"/>
 
-</FrameLayout>
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_500"
+        android:iconifiedByDefault="false"
+
+        android:queryHint="Pacman"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:text="Top Seller"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/grey_900"
+        android:textSize="14dp"/>
+
+    <View
+        android:layout_marginTop="4dp"
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textView"
+
+        android:background="@color/grey_900" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listTopSellerGames"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+         />
+
+
+</RelativeLayout>

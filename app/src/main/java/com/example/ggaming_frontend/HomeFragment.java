@@ -1,64 +1,115 @@
 package com.example.ggaming_frontend;
 
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
+import com.example.ggaming_frontend.components.GameCard;
+import com.example.ggaming_frontend.models.Game;
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    public HomeFragment() {
-//        // Required empty public constructor
-//    }
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment HomeFragment.
-//     */
-//    // TODO: Rename and change types and number of parameters
-////    public static HomeFragment newInstance(String param1, String param2) {
-////        HomeFragment fragment = new HomeFragment();
-////        Bundle args = new Bundle();
-////        args.putString(ARG_PARAM1, param1);
-////        args.putString(ARG_PARAM2, param2);
-////        fragment.setArguments(args);
-////        return fragment;
-////    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+
+
+public class HomeFragment extends Fragment {
+    View root;
+    RecyclerView listGames;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadGames();
+    }
+
+    private void loadGames() {
+
+        LinearLayoutManager layoutManager= new LinearLayoutManager(HomeFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
+
+        listGames.setLayoutManager(layoutManager);
+
+        listGames.addItemDecoration(new VerticalSpaceItemDecoration(16) );
+
+
+
+        try {
+            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
+
+
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            JSONArray GamesJsonArray = obj.getJSONArray("games");
+
+            for (int i = 0; i < GamesJsonArray.length(); i++) {
+                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
+                topSellerGameArray.add(GameObj);
+
+            }
+            GameCard gameCardView = new GameCard(HomeFragment.this.getContext() , topSellerGameArray);
+            listGames.setAdapter(gameCardView);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //load game data from local json file
+    private String loadJSONFromAsset( ) {
+        String json = null;
+        try {
+            InputStream is = getResources().getAssets().open("games.json");
+
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
+        listGames = root.findViewById(R.id.listTopSellerGames);
+        return root;
+    }
+
+//  ref: https://stackoverflow.com/questions/24618829/how-to-add-dividers-and-spaces-between-items-in-recyclerview
+    public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
+
+        private final int verticalSpaceHeight;
+
+        public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
+            this.verticalSpaceHeight = verticalSpaceHeight;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+                                   RecyclerView.State state) {
+            outRect.bottom = verticalSpaceHeight;
+        }
     }
 }

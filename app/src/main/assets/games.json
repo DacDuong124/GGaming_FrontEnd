@@ -1,0 +1,19 @@
+{
+  "games": [
+    {
+      "title": "Game 1",
+      "category": "Category 1",
+      "price": "$200"
+    },
+    {
+      "title": "Game 2",
+      "category": "Category 2",
+      "price": "$220"
+    },
+    {
+      "title": "Game 3",
+      "category": "Category 3",
+      "price": "$230"
+    }
+  ]
+}
