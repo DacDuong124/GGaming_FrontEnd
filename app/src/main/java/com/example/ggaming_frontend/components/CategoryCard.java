@@ -1,68 +1,48 @@
 package com.example.ggaming_frontend.components;
 
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ggaming_frontend.HomeFragment;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ggaming_frontend.R;
+import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
-public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
+public class CategoryCard extends RecyclerView.Adapter<CategoryCard.ViewHolder>  {
 
     private LayoutInflater inflater;
     private Context context;
-    private ArrayList<Game> games;
+    private ArrayList<Category> categories;
 
-
-
-    public GameCard(Context context, ArrayList<Game> games) {
+    public CategoryCard(Context context, ArrayList<Category> categories) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
-        this.games = games;
+        this.categories = categories ;
     }
-
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_game_card, parent, false);
-        return new GameCard.ViewHolder(view);
+    public CategoryCard.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_category_card, parent, false);
+        return new CategoryCard.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.gameTitle.setText(games.get(position).getTitle());
-        new DownloadImageTask(holder.thumbnail).execute("https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=640&h=312&dpr=1");
-
-
-
-//        holder.whole.setOnClickListener(view -> {
-//            Intent intent = new Intent(context, DetailsActivity.class);
-//            intent.putExtra("GameData", games.get(position));
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent);
-//
-//        });
+    public void onBindViewHolder(@NonNull CategoryCard.ViewHolder holder, int position) {
+        holder.categoryTitle.setText(categories.get(position).getTitle());
+        new DownloadImageTask(holder.thumbnail).execute(categories.get(position).getThumbSrc());
     }
 
     // ref: https://stackoverflow.com/questions/6407324/how-to-display-image-from-url-on-android
@@ -89,25 +69,24 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
         }
     }
 
+
     @Override
     public int getItemCount() {
-        return games.size();
+        return categories.size();
     }
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView gameTitle;
+        TextView categoryTitle;
         ImageView thumbnail;
-        TextView price;
+
         View whole;
 
         public ViewHolder(View v) {
             super(v);
             whole = v;
-            gameTitle = v.findViewById(R.id.gameTitle);
-            thumbnail = v.findViewById(R.id.gameThumbnail);
-            price = v.findViewById(R.id.price);
+            categoryTitle = v.findViewById(R.id.categoryTitle);
+            thumbnail = v.findViewById(R.id.thumbnail);
+
 
         }
     }

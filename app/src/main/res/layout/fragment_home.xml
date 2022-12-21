@@ -5,45 +5,84 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="16dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="80dp"
     tools:context=".HomeFragment">
 
 
-    <SearchView
-        android:id="@+id/search_bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grey_500"
-        android:iconifiedByDefault="false"
+        android:layout_height="wrap_content">
 
-        android:queryHint="Pacman"
-        android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_500"
+                android:iconifiedByDefault="false"
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_bar"
-        android:text="Top Seller"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/grey_900"
-        android:textSize="14dp"/>
+                android:queryHint="Pacman"
+                android:textColor="@color/black" />
 
-    <View
-        android:layout_marginTop="4dp"
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textView"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search_bar"
+                android:text="Top Seller"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/grey_900"
+                android:textSize="14dp"/>
 
-        android:background="@color/grey_900" />
+            <View
+                android:layout_marginTop="4dp"
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textView"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listTopSellerGames"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/divider"
-         />
+                android:background="@color/grey_900" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listTopSellerGames"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listTopSellerGames"
+                android:layout_marginTop="24dp"
+                android:text="Browser by Category"
+                android:textColor="@color/grey_900"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_marginTop="4dp"
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textView2"
+
+                android:background="@color/grey_900" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listCategories"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider2"
+                />
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
