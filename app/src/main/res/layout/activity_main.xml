@@ -6,14 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/mainTopBar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/uranian_blue_50"
+
+       app:layout_constraintTop_toTopOf="parent"
+       app:titleTextColor="@color/black">
+
+      <TextView
+          android:id="@+id/appName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="GGaming"
+          android:textColor="@color/queen_blue"
+          android:textSize="24dp"
+          android:textStyle="bold" />
+
+      <ImageView
+          android:id="@+id/profileActionIcon"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end"
+          app:srcCompat="@drawable/profile_icon" />
+
+
+   </androidx.appcompat.widget.Toolbar>
+
+
    <androidx.viewpager.widget.ViewPager
        android:id="@+id/view_pager"
 
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
+       android:layout_height="wrap_content"
        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-       app:layout_constraintTop_toTopOf="parent" />
-   
+       app:layout_constraintTop_toBottomOf="@+id/topBar"
+       app:layout_constraintVertical_bias="0.0"
+       >
+
+
+   </androidx.viewpager.widget.ViewPager>
+
    <com.google.android.material.bottomnavigation.BottomNavigationView
        android:id="@+id/bottom_nav"
        android:layout_width="match_parent"

@@ -1,48 +1,52 @@
 package com.example.ggaming_frontend;
 
-import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.recyclerview.widget.LinearLayoutManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.Menu;
 
-import com.example.ggaming_frontend.components.GameCard;
-import com.example.ggaming_frontend.models.Game;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
-    RecyclerView listGames;
-    ViewPagerAdapter viewPagerAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayShowTitleEnabled(false);
+
+
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
         initComponents();
+
 
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return true;
+    }
 
 
 
