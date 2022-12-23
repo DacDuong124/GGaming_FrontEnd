@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ggaming_frontend.GameDetailActivity;
 import com.example.ggaming_frontend.ProfileActivity;
 import com.example.ggaming_frontend.R;
 import com.example.ggaming_frontend.models.Game;
@@ -52,17 +54,15 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.gameTitle.setText(games.get(position).getTitle());
-        new DownloadImageTask(holder.thumbnail).execute("https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=640&h=312&dpr=1");
+        new DownloadImageTask(holder.thumbnail).execute("https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=80&h=802&dpr=1");
 
 
 
-//        holder.whole.setOnClickListener(view -> {
-//            Intent intent = new Intent(context, DetailsActivity.class);
-//            intent.putExtra("GameData", games.get(position));
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent);
-//
-//        });
+        holder.whole.setOnClickListener(view -> {
+            Intent intent = new Intent(context, GameDetailActivity.class);
+            context.startActivity(intent);
+
+        });
     }
 
     // ref: https://stackoverflow.com/questions/6407324/how-to-display-image-from-url-on-android
