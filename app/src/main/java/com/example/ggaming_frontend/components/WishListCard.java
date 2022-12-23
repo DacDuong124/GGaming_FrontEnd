@@ -1,33 +1,27 @@
 package com.example.ggaming_frontend.components;
 
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ggaming_frontend.ProfileActivity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ggaming_frontend.R;
 import com.example.ggaming_frontend.models.Game;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
+public class WishListCard extends RecyclerView.Adapter<WishListCard.ViewHolder>  {
 
     private LayoutInflater inflater;
     private Context context;
@@ -35,7 +29,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
 
 
 
-    public GameCard(Context context, ArrayList<Game> games) {
+    public WishListCard(Context context, ArrayList<Game> games) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
         this.games = games;
@@ -45,8 +39,8 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_game_card, parent, false);
-        return new GameCard.ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_wish_list_card, parent, false);
+        return new WishListCard.ViewHolder(view);
     }
 
     @Override
@@ -75,7 +69,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+                InputStream in = new URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
 //                Log.e("Error", e.getMessage());
@@ -99,7 +93,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView gameTitle;
         ImageView thumbnail;
-        TextView price;
+//        TextView price;
         View whole;
 
         public ViewHolder(View v) {
@@ -107,7 +101,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
             whole = v;
             gameTitle = v.findViewById(R.id.gameTitle);
             thumbnail = v.findViewById(R.id.gameThumbnail);
-            price = v.findViewById(R.id.price);
+//            price = v.findViewById(R.id.price);
 
         }
     }

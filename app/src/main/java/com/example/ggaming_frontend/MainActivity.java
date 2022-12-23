@@ -8,10 +8,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,16 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowTitleEnabled(false);
-
-
-        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-
         initComponents();
-
-
-
     }
 
 
@@ -70,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setSwitchMenuItemScreen();
+
+
+        ImageView profileActionIcon = findViewById(R.id.profileActionIcon);
+        profileActionIcon.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+
+        });
 
     }
 

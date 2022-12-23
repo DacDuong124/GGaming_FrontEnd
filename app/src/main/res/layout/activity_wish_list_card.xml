@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:paddingBottom="1dp"
     android:paddingHorizontal="4dp"
     android:paddingVertical="4dp"
+
     tools:context=".components.GameCard">
 
 
@@ -15,9 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/white"
         android:gravity="center"
         android:elevation="2dp"
-        android:background="@color/white"
 
        >
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,10 +59,10 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/addToCartAction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$200"
+            android:text="Add To Cart"
             android:textColor="@color/green_500"
             android:paddingRight="16dp"
             android:textAlignment="viewEnd" />
