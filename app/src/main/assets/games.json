@@ -3,17 +3,20 @@
     {
       "title": "Game 1",
       "category": "Category 1",
-      "price": "$200"
+      "price": "$200",
+      "description": "Lorem ipsum dolor sit amet consectetur. Nibh in ultricies adipiscing potenti non id magnis morbi. Suspendisse fringilla mi eget neque aliquet blandit. A amet ipsum bibendum sed. Augue congue viverra eu facilisis quam vulputate est cursus elit."
     },
     {
       "title": "Game 2",
       "category": "Category 2",
-      "price": "$220"
+      "price": "$220",
+      "description": "Lorem ipsum dolor sit amet consectetur. Nibh in ultricies adipiscing potenti non id magnis morbi. Suspendisse fringilla mi eget neque aliquet blandit. A amet ipsum bibendum sed. Augue congue viverra eu facilisis quam vulputate est cursus elit."
     },
     {
       "title": "Game 3",
       "category": "Category 3",
-      "price": "$230"
+      "price": "$230",
+      "description": "Lorem ipsum dolor sit amet consectetur. Nibh in ultricies adipiscing potenti non id magnis morbi. Suspendisse fringilla mi eget neque aliquet blandit. A amet ipsum bibendum sed. Augue congue viverra eu facilisis quam vulputate est cursus elit."
     }
   ]
 }

@@ -1,6 +1,7 @@
 package com.example.ggaming_frontend.components;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -13,9 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ggaming_frontend.CategoryListActivity;
 import com.example.ggaming_frontend.R;
 import com.example.ggaming_frontend.models.Category;
-import com.example.ggaming_frontend.models.Game;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -43,6 +44,12 @@ public class CategoryCard extends RecyclerView.Adapter<CategoryCard.ViewHolder> 
     public void onBindViewHolder(@NonNull CategoryCard.ViewHolder holder, int position) {
         holder.categoryTitle.setText(categories.get(position).getTitle());
         new DownloadImageTask(holder.thumbnail).execute(categories.get(position).getThumbSrc());
+
+        holder.whole.setOnClickListener(view -> {
+            Intent intent = new Intent(context, CategoryListActivity.class);
+            context.startActivity(intent);
+        });
+
     }
 
     // ref: https://stackoverflow.com/questions/6407324/how-to-display-image-from-url-on-android

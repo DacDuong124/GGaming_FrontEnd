@@ -1,24 +1,19 @@
 package com.example.ggaming_frontend;
 
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Rect;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import com.example.ggaming_frontend.components.CategoryCard;
 import com.example.ggaming_frontend.components.GameCard;
-import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
 
 import org.json.JSONArray;
@@ -27,49 +22,51 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
-
-public class HomeFragment extends Fragment {
-    View root;
+public class CategoryListActivity extends AppCompatActivity {
     RecyclerView listGames;
-    RecyclerView listCategories;
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category_list);
+        initComponents();
         loadGames();
-        loadCategories();
-    }
 
+        LinearLayout filterByPrice = (LinearLayout) findViewById(R.id.filterByPrice);
+        LinearLayout filterByCategory = (LinearLayout) findViewById(R.id.filterByCategory);
 
-    private void loadCategories() {
-        GridLayoutManager gridLayoutManager= new GridLayoutManager(HomeFragment.this.getContext(), 2);
-        listCategories.setLayoutManager(gridLayoutManager);
-        listCategories.addItemDecoration(new VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Category> categoriesArray = new ArrayList<Category>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("categories.json"));
-            JSONArray CategoriesJsonArray = obj.getJSONArray("categories");
-
-            for (int i = 0; i < CategoriesJsonArray.length(); i++) {
-                Category categoryObj = new Category(CategoriesJsonArray.getJSONObject(i));
-                categoriesArray.add(categoryObj);
+        filterByPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
-            CategoryCard categoryCard = new CategoryCard(HomeFragment.this.getContext() , categoriesArray);
-            listCategories.setAdapter(categoryCard);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
+
+        filterByCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
+    private void initComponents() {
+        listGames = findViewById(R.id.listGameCategory);
+        ImageView backActionIcon2 = findViewById(R.id.backActionIcon2);
+        backActionIcon2.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            setResult(200, intent);
+            finish();
+
+        });
+
+    }
 
     private void loadGames() {
-        LinearLayoutManager layoutManager= new LinearLayoutManager(HomeFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(CategoryListActivity.this,LinearLayoutManager.VERTICAL, false);
         listGames.setLayoutManager(layoutManager);
         listGames.addItemDecoration(new VerticalSpaceItemDecoration(16) );
 
@@ -83,7 +80,7 @@ public class HomeFragment extends Fragment {
                 topSellerGameArray.add(GameObj);
 
             }
-            GameCard gameCardView = new GameCard(HomeFragment.this.getContext() , topSellerGameArray);
+            GameCard gameCardView = new GameCard(CategoryListActivity.this , topSellerGameArray);
             listGames.setAdapter(gameCardView);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,17 +107,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_home, container, false);
-        listGames = root.findViewById(R.id.listTopSellerGames);
-        listCategories = root.findViewById(R.id.listCategories);
-        return root;
-    }
-
-
     //  ref: https://stackoverflow.com/questions/24618829/how-to-add-dividers-and-spaces-between-items-in-recyclerview
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -136,4 +122,5 @@ public class HomeFragment extends Fragment {
             outRect.bottom = verticalSpaceHeight;
         }
     }
+
 }
