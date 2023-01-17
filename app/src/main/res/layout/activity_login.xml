@@ -48,7 +48,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/loginEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/loginbar"
@@ -70,7 +70,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/loginPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/loginbar"
@@ -83,7 +83,7 @@
                 android:layout_height="25dp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/loginButton"
+                android:id="@+id/loginBtn"
                 android:layout_width="198dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -115,7 +115,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/signup"
+                    android:id="@+id/moveToRegisterTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/signup"
