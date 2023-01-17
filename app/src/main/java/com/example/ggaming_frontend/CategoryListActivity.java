@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.ggaming_frontend.components.GameCard;
+import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
 
 import org.json.JSONArray;
@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class CategoryListActivity extends AppCompatActivity {
     RecyclerView listGames;
+    private ArrayList<Category> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,6 @@ public class CategoryListActivity extends AppCompatActivity {
         loadGames();
 
         LinearLayout filterByPrice = (LinearLayout) findViewById(R.id.filterByPrice);
-        LinearLayout filterByCategory = (LinearLayout) findViewById(R.id.filterByCategory);
 
         filterByPrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,14 +44,14 @@ public class CategoryListActivity extends AppCompatActivity {
             }
         });
 
-        filterByCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
     }
+
+//    public CategoryListActivity(ArrayList<Category> categories,int position) {
+//        this.categories = categories ;
+//        TextView categoryTitle = findViewById(R.id.gameCategoryTitle);
+//        categoryTitle.setText(categories.get(position).getTitle());
+//    }
 
     private void initComponents() {
         listGames = findViewById(R.id.listGameCategory);
@@ -62,6 +62,12 @@ public class CategoryListActivity extends AppCompatActivity {
             finish();
 
         });
+
+        Intent intent = getIntent();
+        String categoryTitle = (String) intent.getExtras().get("category");
+        TextView categoryGameTitle = findViewById(R.id.gameCategoryTitle);
+        categoryGameTitle.setText(categoryTitle);
+
 
     }
 

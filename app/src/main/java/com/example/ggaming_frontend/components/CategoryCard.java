@@ -47,6 +47,7 @@ public class CategoryCard extends RecyclerView.Adapter<CategoryCard.ViewHolder> 
 
         holder.whole.setOnClickListener(view -> {
             Intent intent = new Intent(context, CategoryListActivity.class);
+            intent.putExtra("category", categories.get(position).getTitle());
             context.startActivity(intent);
         });
 

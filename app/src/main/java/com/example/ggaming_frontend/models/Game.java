@@ -32,4 +32,9 @@ public class Game {
     public String getCategory() {
         return category;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
