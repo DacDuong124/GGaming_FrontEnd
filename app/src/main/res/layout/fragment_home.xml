@@ -10,14 +10,17 @@
     tools:context=".ProfileActivity">
 
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <SearchView
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
@@ -50,10 +53,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listTopSellerGames"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/divider"
-                />
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -83,6 +85,7 @@
                 />
         </LinearLayout>
     </ScrollView>
+
 
 
 </RelativeLayout>

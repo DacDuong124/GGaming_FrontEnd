@@ -51,8 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadWishListItems() {
-
-
         LinearLayoutManager layoutManager= new LinearLayoutManager(ProfileActivity.this,LinearLayoutManager.VERTICAL, false);
         listWishlist.setLayoutManager(layoutManager);
         listWishlist.addItemDecoration(new ProfileActivity.VerticalSpaceItemDecoration(16) );
@@ -91,6 +89,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return json;
     }
+
+
 
     //  ref: https://stackoverflow.com/questions/24618829/how-to-add-dividers-and-spaces-between-items-in-recyclerview
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
