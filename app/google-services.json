@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507388242282",
+    "project_id": "game-store-9f3ce",
+    "storage_bucket": "game-store-9f3ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507388242282:android:12f8e0a064a8c99109dd13",
+        "android_client_info": {
+          "package_name": "com.example.ggaming_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507388242282-vvq34r9avhvju6408dfuappagojb8l58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9_aXOQIzx3IhHY5D6NWHvf-mkvcjDhoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507388242282-vvq34r9avhvju6408dfuappagojb8l58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
