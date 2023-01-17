@@ -62,6 +62,8 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
 
         holder.whole.setOnClickListener(view -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
+            intent.putExtra("title", games.get(position).getTitle());
+//            intent.putExtra("description", games.get(position).get)
             context.startActivity(intent);
 
         });
