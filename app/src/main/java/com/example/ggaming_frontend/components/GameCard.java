@@ -54,12 +54,16 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.gameTitle.setText(games.get(position).getTitle());
+        holder.gameCategory.setText(games.get(position).getCategory());
+
         new DownloadImageTask(holder.thumbnail).execute("https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=80&h=802&dpr=1");
 
 
 
         holder.whole.setOnClickListener(view -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
+            intent.putExtra("title", games.get(position).getTitle());
+//            intent.putExtra("description", games.get(position).get)
             context.startActivity(intent);
 
         });
@@ -98,6 +102,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView gameTitle;
+        TextView gameCategory;
         ImageView thumbnail;
         TextView price;
         View whole;
@@ -106,6 +111,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
             super(v);
             whole = v;
             gameTitle = v.findViewById(R.id.gameTitle);
+            gameCategory = v.findViewById(R.id.gameCategory);
             thumbnail = v.findViewById(R.id.gameThumbnail);
             price = v.findViewById(R.id.price);
 
