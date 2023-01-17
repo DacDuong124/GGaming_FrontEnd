@@ -202,7 +202,7 @@
                             android:backgroundTint="#ADD9F4"
                             android:drawableTop="@drawable/star"
                             android:gravity="center"
-                            android:onClick="onClickPoint"
+
                             android:padding="20sp"
                             android:text="Point"
                             android:textSize="20sp" />
@@ -223,7 +223,7 @@
                             android:backgroundTint="#476C9B"
                             android:drawableTop="@drawable/credit"
                             android:gravity="center"
-                            android:onClick="onClickCard"
+
                             android:padding="20sp"
                             android:text="Card"
                             android:textSize="20sp" />
