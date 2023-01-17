@@ -6,7 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -92,19 +99,84 @@ public class CartFragment extends Fragment{
         point_button.setOnClickListener(v -> {
             point_dialog = new Dialog(CartFragment.this.getContext());
             point_dialog.setContentView(R.layout.point_dialog);
+            WindowManager.LayoutParams params = point_dialog.getWindow().getAttributes();
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            point_dialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params );
+           // point_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            ImageButton close = point_dialog.findViewById(R.id.close_btn);
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    point_dialog.dismiss();
+                }
+            });
+
+            Button pay_btn = point_dialog.findViewById(R.id.pay_btn);
+            pay_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    point_dialog.dismiss();
+                }
+            });
             point_dialog.show();
         });
 
         card_button.setOnClickListener(v -> {
             card_dialog = new Dialog(CartFragment.this.getContext());
             card_dialog.setContentView(R.layout.card_dialog);
+            WindowManager.LayoutParams params = card_dialog.getWindow().getAttributes();
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            card_dialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params );
+            ImageButton close = card_dialog.findViewById(R.id.close_btn);
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    card_dialog.dismiss();
+                }
+            });
+
+            Button pay_btn = card_dialog.findViewById(R.id.pay_btn);
+            pay_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    card_dialog.dismiss();
+                }
+            });
+
+            RadioGroup card_group = card_dialog.findViewById(R.id.card_group);
+            RadioButton card1 = card_dialog.findViewById(R.id.card1);
+            RadioButton card2 = card_dialog.findViewById(R.id.card2);
+            RadioButton card3 = card_dialog.findViewById(R.id.card3);
+            RadioButton card4 = card_dialog.findViewById(R.id.card4);
+            TextView selected_card = card_dialog.findViewById(R.id.selected_card);
+            TextView card1_info = card_dialog.findViewById(R.id.card1_info);
+            TextView card2_info = card_dialog.findViewById(R.id.card2_info);
+            TextView card3_info = card_dialog.findViewById(R.id.card3_info);
+            TextView card4_info = card_dialog.findViewById(R.id.card4_info);
+
+            card_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    if(i == R.id.card1){
+                        selected_card.setText(card1_info.getText().toString());
+                    }
+                    else if(i == R.id.card2){
+                        selected_card.setText(card2_info.getText().toString());
+                    }
+                    else if(i == R.id.card3){
+                        selected_card.setText(card3_info.getText().toString());
+                    }
+                    else if(i == R.id.card4){
+                        selected_card.setText(card4_info.getText().toString());
+                    }
+                }
+            });
             card_dialog.show();
         });
-
-
         return parent;
     }
-
 
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
