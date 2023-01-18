@@ -9,4 +9,13 @@ public class Constants {
         public static final String registerSuccess = "Successfully registered";
         public static final String registerFailure = "Authentication failed, email must be unique and has correct form!";
     }
+
+    //Fields of FireStore 'users' collection
+    public static class FSUser {
+        public static final String userCollection = "users";
+        public static final String usernameField = "username";
+        public static final String ageField = "age";
+        public static final String countryField = "country";
+        public static final String emailField = "email";
+    }
 }

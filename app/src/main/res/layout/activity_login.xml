@@ -53,9 +53,8 @@
                 android:layout_height="35dp"
                 android:background="@drawable/loginbar"
                 android:ems="20"
-                android:inputType="textPersonName"
 
-                />
+                android:inputType="textWebEmailAddress" />
 
             <View
                 android:id="@+id/view3"
@@ -75,7 +74,7 @@
                 android:layout_height="35dp"
                 android:background="@drawable/loginbar"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
 
             <View
                 android:id="@+id/view6"
