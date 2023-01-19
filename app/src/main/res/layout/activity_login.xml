@@ -54,7 +54,8 @@
                 android:background="@drawable/loginbar"
                 android:ems="20"
 
-                android:inputType="textWebEmailAddress" />
+                android:inputType="textWebEmailAddress"
+                android:text="nubvan@gmail.com" />
 
             <View
                 android:id="@+id/view3"
@@ -74,7 +75,8 @@
                 android:layout_height="35dp"
                 android:background="@drawable/loginbar"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="nubvan" />
 
             <View
                 android:id="@+id/view6"

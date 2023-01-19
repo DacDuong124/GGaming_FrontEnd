@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ggaming_frontend.models.PaymentCard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void saveUserInfo() throws ParseException {
         String username = usernameEditText.getText().toString();
-        String age = ageEditText.getText().toString();
+        Integer age = Integer.parseInt(ageEditText.getText().toString());
         String country = countryEditText.getText().toString();
         String email = emailEditText.getText().toString();
 
@@ -103,6 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
         data.put(Constants.FSUser.ageField, age);
         data.put(Constants.FSUser.countryField, country);
         data.put(Constants.FSUser.emailField, email);
+        data.put(Constants.FSUser.paymentCardsField, new ArrayList<PaymentCard>());
         db.collection(Constants.FSUser.userCollection).add(data);
     }
 
