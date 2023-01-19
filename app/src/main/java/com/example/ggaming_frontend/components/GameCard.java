@@ -4,29 +4,23 @@ package com.example.ggaming_frontend.components;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ggaming_frontend.Constants;
 import com.example.ggaming_frontend.GameDetailActivity;
-import com.example.ggaming_frontend.ProfileActivity;
 import com.example.ggaming_frontend.R;
 import com.example.ggaming_frontend.models.Game;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
@@ -59,10 +53,12 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
         new DownloadImageTask(holder.thumbnail).execute(games.get(position).getImg());
         holder.whole.setOnClickListener(view -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
-            intent.putExtra("title", games.get(position).getTitle());
-//            intent.putExtra("description", games.get(position).get)
+            intent.putExtra(Constants.FSGames.titleField, games.get(position).getTitle());
+            intent.putExtra(Constants.FSGames.descField, games.get(position).getDesc());
+            intent.putExtra(Constants.FSGames.categoriesField, games.get(position).getCategories().get(0).getTitle());
+            intent.putExtra(Constants.FSGames.priceField, games.get(position).getPrice());
+            intent.putExtra(Constants.FSGames.imgField, games.get(position).getImg());
             context.startActivity(intent);
-
         });
     }
 
@@ -108,7 +104,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
             super(v);
             whole = v;
             gameTitle = v.findViewById(R.id.gameTitle);
-            gameCategory = v.findViewById(R.id.gameCategory);
+            gameCategory = v.findViewById(R.id.gameDetailCategoryTextView);
             thumbnail = v.findViewById(R.id.gameThumbnail);
             price = v.findViewById(R.id.price);
 
