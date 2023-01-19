@@ -126,38 +126,15 @@
                         />
                     <!-- Spacer -->
 
-                    <TextView
-                        android:id="@+id/nameEdit"
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/search_bar"
-                        android:layout_marginTop="16dp"
-                        android:text="Edit"
-                        android:textColor="@color/queen_blue"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
 
                 </LinearLayout>
 
-                <View
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/textView"
-
-                    android:background="@color/grey_900" />
-
-                <TextView
-                    android:id="@+id/userName"
+                <EditText
+                    android:id="@+id/profileNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hoang Minh Quan"
-                    android:textSize="20dp"
-                    android:textColor="@color/rich_black"
-                    android:textStyle="bold"/>
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 
@@ -190,39 +167,16 @@
                         />
                     <!-- Spacer -->
 
-                    <TextView
-                        android:id="@+id/ageEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/search_bar"
-                        android:layout_marginTop="16dp"
-                        android:text="Edit"
-                        android:textColor="@color/queen_blue"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
 
                 </LinearLayout>
 
 
-
-                <View
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/divider2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/textView"
-
-                    android:background="@color/grey_900" />
-
-                <TextView
-                    android:id="@+id/userAge"
+                <EditText
+                    android:id="@+id/profileAgeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="22"
-                    android:textSize="20dp"
-                    android:textColor="@color/rich_black"
-                    android:textStyle="bold"/>
+                    android:ems="10"
+                    android:inputType="number" />
 
             </LinearLayout>
 
@@ -256,39 +210,16 @@
                         />
                     <!-- Spacer -->
 
-                    <TextView
-                        android:id="@+id/countryEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/search_bar"
-                        android:text="Edit"
-                        android:textStyle="bold"
-                        android:layout_marginTop="16dp"
-                        android:textColor="@color/queen_blue"
-                        android:textSize="14dp"/>
-
 
                 </LinearLayout>
 
 
-
-                <View
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/divider3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/textView"
-
-                    android:background="@color/grey_900" />
-
-                <TextView
-                    android:id="@+id/userCountry"
+                <EditText
+                    android:id="@+id/profileCountryEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="USA"
-                    android:textSize="20dp"
-                    android:textColor="@color/rich_black"
-                    android:textStyle="bold"/>
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 
@@ -323,7 +254,7 @@
                     <!-- Spacer -->
 
                     <TextView
-                        android:id="@+id/paymentAdd"
+                        android:id="@+id/profilePaymentCardAddBtn"
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
@@ -408,6 +339,15 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/profileUpdateBtn"
+                android:layout_width="188dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Update Profile" />
 
 
         </LinearLayout>

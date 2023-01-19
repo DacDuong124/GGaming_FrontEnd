@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -15,6 +17,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.ggaming_frontend.components.GameCard;
 import com.example.ggaming_frontend.components.WishListCard;
 import com.example.ggaming_frontend.models.Game;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,16 +32,38 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
     RecyclerView listWishlist;
 
+    private EditText nameEditText;
+    private EditText ageEditText;
+    private EditText countryEditText;
+    private Button updateBtn;
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+//    private StorageReference mStorageRef;
+
+//    User currentUserObject = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        currentUser = mAuth.getCurrentUser();
 
         initComponents();
         loadWishListItems();
     }
 
     private void initComponents() {
+        nameEditText = findViewById(R.id.profileNameEditText);
+        ageEditText = findViewById(R.id.profileAgeEditText);
+        countryEditText = findViewById(R.id.profileCountryEditText);
+        updateBtn = findViewById(R.id.profileUpdateBtn);
+
         listWishlist = findViewById(R.id.listWishList);
 
         ImageView backActionIcon = findViewById(R.id.backActionIcon);
