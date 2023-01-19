@@ -16,10 +16,25 @@ import android.view.Menu;
 import android.widget.ImageView;
 
 
+import com.example.ggaming_frontend.models.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //Firebase, FireStore
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+
+    //Current user info
+    User currentUserObject = null;
 
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
@@ -31,8 +46,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initComponents();
+        initFirebaseCurrentUserInfo(); //Get all fireStore instances
     }
 
+    /**
+     * Get instances of Firebase FireStore Auth, db, current user
+     */
+    private void initFirebaseCurrentUserInfo() {
+        //Get instances of Firebase FireStore
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        getCurrentUserObject(); //Get current user object info
+    }
+
+    /**
+     * Get current user object from FireStore
+     */
+    private void getCurrentUserObject() {
+        db.collection(Constants.FSUser.userCollection)
+                .whereEqualTo(Constants.FSUser.emailField, currentUser.getEmail())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            currentUserObject = doc.toObject(User.class);
+                        }
+                    }
+                });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         profileActionIcon.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
-
         });
 
     }
