@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         initFirebaseCurrentUserInfo();
         initComponents();
-        loadWishListItems();
+//        loadWishListItems();
         setUpdateBtnHandler();
     }
 
@@ -154,27 +154,27 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void loadWishListItems() {
-        LinearLayoutManager layoutManager= new LinearLayoutManager(ProfileActivity.this,LinearLayoutManager.VERTICAL, false);
-        listWishlist.setLayoutManager(layoutManager);
-        listWishlist.addItemDecoration(new ProfileActivity.VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Game> wishListGameArray = new ArrayList<Game>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
-            JSONArray GamesJsonArray = obj.getJSONArray("games");
-
-            for (int i = 0; i < GamesJsonArray.length(); i++) {
-                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
-                wishListGameArray.add(GameObj);
-
-            }
-            WishListCard gameCardView = new WishListCard(ProfileActivity.this, wishListGameArray);
-            listWishlist.setAdapter(gameCardView);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void loadWishListItems() {
+//        LinearLayoutManager layoutManager= new LinearLayoutManager(ProfileActivity.this,LinearLayoutManager.VERTICAL, false);
+//        listWishlist.setLayoutManager(layoutManager);
+//        listWishlist.addItemDecoration(new ProfileActivity.VerticalSpaceItemDecoration(16) );
+//
+//        try {
+//            ArrayList<Game> wishListGameArray = new ArrayList<Game>();
+//            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
+//            JSONArray GamesJsonArray = obj.getJSONArray("games");
+//
+//            for (int i = 0; i < GamesJsonArray.length(); i++) {
+//                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
+//                wishListGameArray.add(GameObj);
+//
+//            }
+//            WishListCard gameCardView = new WishListCard(ProfileActivity.this, wishListGameArray);
+//            listWishlist.setAdapter(gameCardView);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     //load game data from local json file
     private String loadJSONFromAsset(String fileName) {

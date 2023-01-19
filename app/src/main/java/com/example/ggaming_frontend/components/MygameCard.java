@@ -49,9 +49,6 @@ public class MygameCard extends RecyclerView.Adapter<MygameCard.ViewHolder>{
     public void onBindViewHolder(@NonNull MygameCard.ViewHolder holder, int position) {
         holder.game_title.setText(mygameCard.get(position).getTitle());
         new DownloadImageTask(holder.game_image).execute("https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=80&h=802&dpr=1");
-
-
-
         holder.whole.setOnClickListener(view -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
             context.startActivity(intent);

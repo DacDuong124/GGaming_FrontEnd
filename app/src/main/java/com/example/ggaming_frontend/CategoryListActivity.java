@@ -33,7 +33,7 @@ public class CategoryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_list);
         initComponents();
-        loadGames();
+//        loadGames();
 
         LinearLayout filterByPrice = (LinearLayout) findViewById(R.id.filterByPrice);
 
@@ -71,27 +71,27 @@ public class CategoryListActivity extends AppCompatActivity {
 
     }
 
-    private void loadGames() {
-        LinearLayoutManager layoutManager= new LinearLayoutManager(CategoryListActivity.this,LinearLayoutManager.VERTICAL, false);
-        listGames.setLayoutManager(layoutManager);
-        listGames.addItemDecoration(new VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
-            JSONArray GamesJsonArray = obj.getJSONArray("games");
-
-            for (int i = 0; i < GamesJsonArray.length(); i++) {
-                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
-                topSellerGameArray.add(GameObj);
-
-            }
-            GameCard gameCardView = new GameCard(CategoryListActivity.this , topSellerGameArray);
-            listGames.setAdapter(gameCardView);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void loadGames() {
+//        LinearLayoutManager layoutManager= new LinearLayoutManager(CategoryListActivity.this,LinearLayoutManager.VERTICAL, false);
+//        listGames.setLayoutManager(layoutManager);
+//        listGames.addItemDecoration(new VerticalSpaceItemDecoration(16) );
+//
+//        try {
+//            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
+//            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
+//            JSONArray GamesJsonArray = obj.getJSONArray("games");
+//
+//            for (int i = 0; i < GamesJsonArray.length(); i++) {
+//                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
+//                topSellerGameArray.add(GameObj);
+//
+//            }
+//            GameCard gameCardView = new GameCard(CategoryListActivity.this , topSellerGameArray);
+//            listGames.setAdapter(gameCardView);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     //load game data from local json file

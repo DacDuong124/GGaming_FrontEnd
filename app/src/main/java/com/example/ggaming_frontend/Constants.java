@@ -24,4 +24,28 @@ public class Constants {
 
         public static final String currentUserObjectKey = "currentUser";
     }
+
+    public static class FSCategories {
+        public static final String categoriesCollection = "categories";
+
+        public static final String titleField = "title";
+
+        public static final String thumbSrcField = "thumbSrc";
+
+    }
+
+    public static class FSGames {
+        public static final String gamesCollection = "products";
+
+        public static final String categoriesField = "categories";
+
+        public static final String descField = "desc";
+
+        public static final String imgField = "img";
+
+        public static final String priceField = "price";
+
+        public static final String titleField = "title";
+
+    }
 }

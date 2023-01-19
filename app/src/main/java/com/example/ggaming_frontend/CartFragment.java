@@ -45,31 +45,31 @@ public class CartFragment extends Fragment{
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadGames();
+//        loadGames();
 
     }
 
-    private void loadGames() {
-        LinearLayoutManager layoutManager= new LinearLayoutManager(CartFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
-        mygame_list.setLayoutManager(layoutManager);
-        mygame_list.addItemDecoration(new CartFragment.VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
-            JSONArray GamesJsonArray = obj.getJSONArray("games");
-
-            for (int i = 0; i < GamesJsonArray.length(); i++) {
-                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
-                topSellerGameArray.add(GameObj);
-
-            }
-            GameCard gameCardView = new GameCard(CartFragment.this.getContext() , topSellerGameArray);
-            mygame_list.setAdapter(gameCardView);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void loadGames() {
+//        LinearLayoutManager layoutManager= new LinearLayoutManager(CartFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
+//        mygame_list.setLayoutManager(layoutManager);
+//        mygame_list.addItemDecoration(new CartFragment.VerticalSpaceItemDecoration(16) );
+//
+//        try {
+//            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
+//            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
+//            JSONArray GamesJsonArray = obj.getJSONArray("games");
+//
+//            for (int i = 0; i < GamesJsonArray.length(); i++) {
+//                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
+//                topSellerGameArray.add(GameObj);
+//
+//            }
+//            GameCard gameCardView = new GameCard(CartFragment.this.getContext() , topSellerGameArray);
+//            mygame_list.setAdapter(gameCardView);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private String loadJSONFromAsset(String fileName) {
         String json = null;
