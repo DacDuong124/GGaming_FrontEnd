@@ -8,6 +8,15 @@
     android:paddingTop="20dp"
     android:paddingBottom="80dp"
     tools:context=".ProfileActivity">
+    <TextView
+        android:id="@+id/mycart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Games"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mygame_list"
         android:layout_width="match_parent"
@@ -17,6 +26,7 @@
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@android:color/darker_gray"
         android:scrollbars="vertical"
+        android:layout_below="@+id/mycart"
         />
 
 
