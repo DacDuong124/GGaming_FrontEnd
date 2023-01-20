@@ -16,7 +16,6 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/gameDetailTopBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -30,18 +29,19 @@
                     app:srcCompat="@drawable/back_icon" />
 
                 <TextView
-                    android:id="@+id/gameDetailActionTitle"
+                    android:id="@+id/gameDetailTitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Game Name"
                     android:textColor="@color/queen_blue"
                     android:textSize="24dp"
                     android:textStyle="bold" />
+
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="36dp"
-                    android:layout_gravity="end"
                     android:layout_height="36dp"
+                    android:layout_gravity="end"
                     android:layout_marginRight="16dp"
                     app:srcCompat="@drawable/heart_icon" />
 
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/gameDetailImage"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -92,7 +92,7 @@
                         app:srcCompat="@drawable/category_icon" />
 
                     <TextView
-                        android:id="@+id/gameCategory"
+                        android:id="@+id/gameDetailCategoryTextView"
                         android:paddingLeft="4dp"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
@@ -112,7 +112,7 @@
                 <!-- Spacer -->
 
                 <TextView
-                    android:id="@+id/gamePrice"
+                    android:id="@+id/gameDetailPriceTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/green_500"
@@ -147,7 +147,7 @@
                     android:background="@color/grey_900" />
 
                 <TextView
-                    android:id="@+id/gameDescription"
+                    android:id="@+id/gameDetailDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

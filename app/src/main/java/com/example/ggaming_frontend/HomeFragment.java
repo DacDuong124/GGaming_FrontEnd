@@ -15,11 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ggaming_frontend.components.CategoryCard;
 import com.example.ggaming_frontend.components.GameCard;
 import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
+import com.example.ggaming_frontend.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -36,58 +45,84 @@ public class HomeFragment extends Fragment {
     RecyclerView listGames;
     RecyclerView listCategories;
 
+    private ArrayList<Category> categories = new ArrayList<>();
+
+    private ArrayList<Game> games = new ArrayList<>();
+
+    private FirebaseFirestore db;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadGames();
-        loadCategories();
+        db = FirebaseFirestore.getInstance();
+        fetchCategories();
     }
 
+    private void fetchGames() {
+        db.collection(Constants.FSGames.gamesCollection)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                ArrayList<Category> curCategories = new ArrayList<>();
+                                ArrayList<String> categoriesIdList = (ArrayList<String>) document.get(Constants.FSGames.categoriesField);
+                                for (String categoryId : categoriesIdList) {
+                                    Category category = Category.getCategoryById(categories, categoryId);
+                                    curCategories.add(category);
+                                }
+                                Game game = new Game(
+                                        Objects.requireNonNull(document.get(Constants.FSGames.titleField)).toString(), document.get(Constants.FSGames.priceField).toString(), curCategories, document.get(Constants.FSGames.descField).toString(), document.get(Constants.FSGames.imgField).toString());
+                                games.add(game);
+                            }
+                            renderGames();
+                        } else {
+                            Toast.makeText(getActivity(),
+                                    "Failed to get list of categories!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
 
-    private void loadCategories() {
+    private void fetchCategories() {
+        db.collection(Constants.FSCategories.categoriesCollection)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Category category = document.toObject(Category.class);
+                                categories.add(category);
+                            }
+                            fetchGames();
+                            renderCategories();
+                        } else {
+                            Toast.makeText(getActivity(),
+                                    "Failed to get list of categories!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    private void renderCategories() {
         GridLayoutManager gridLayoutManager= new GridLayoutManager(HomeFragment.this.getContext(), 2);
         listCategories.setLayoutManager(gridLayoutManager);
         listCategories.addItemDecoration(new VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Category> categoriesArray = new ArrayList<Category>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("categories.json"));
-            JSONArray CategoriesJsonArray = obj.getJSONArray("categories");
-
-            for (int i = 0; i < CategoriesJsonArray.length(); i++) {
-                Category categoryObj = new Category(CategoriesJsonArray.getJSONObject(i));
-                categoriesArray.add(categoryObj);
-
-            }
-            CategoryCard categoryCard = new CategoryCard(HomeFragment.this.getContext() , categoriesArray);
-            listCategories.setAdapter(categoryCard);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        CategoryCard categoryCard = new CategoryCard(HomeFragment.this.getContext() , categories);
+        listCategories.setAdapter(categoryCard);
     }
 
 
-    private void loadGames() {
+    private void renderGames() {
         LinearLayoutManager layoutManager= new LinearLayoutManager(HomeFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
         listGames.setLayoutManager(layoutManager);
         listGames.addItemDecoration(new VerticalSpaceItemDecoration(16) );
-
-        try {
-            ArrayList<Game> topSellerGameArray = new ArrayList<Game>();
-            JSONObject obj = new JSONObject(loadJSONFromAsset("games.json"));
-            JSONArray GamesJsonArray = obj.getJSONArray("games");
-
-            for (int i = 0; i < GamesJsonArray.length(); i++) {
-                Game GameObj = new Game(GamesJsonArray.getJSONObject(i));
-                topSellerGameArray.add(GameObj);
-
-            }
-            GameCard gameCardView = new GameCard(HomeFragment.this.getContext() , topSellerGameArray);
-            listGames.setAdapter(gameCardView);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        GameCard gameCardView = new GameCard(HomeFragment.this.getContext() , games);
+        listGames.setAdapter(gameCardView);
     }
 
 

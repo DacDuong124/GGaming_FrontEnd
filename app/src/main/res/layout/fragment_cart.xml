@@ -61,14 +61,13 @@
             android:layout_weight="2" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/cartTotalPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="120"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
