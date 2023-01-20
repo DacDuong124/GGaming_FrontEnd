@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.ggaming_frontend.Constants;
 import com.example.ggaming_frontend.GameDetailActivity;
 import com.example.ggaming_frontend.R;
+import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
 
 import java.io.InputStream;
@@ -48,7 +49,19 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.gameTitle.setText(games.get(position).getTitle());
-        holder.gameCategory.setText(games.get(position).getCategories().get(0).getTitle());
+
+        StringBuilder allCategoriesString = new StringBuilder();
+        ArrayList<Category> categories = games.get(position).getCategories();
+        for (int i = 0; i < categories.size(); i++) {
+            Category curCategory = categories.get(i);
+            if (i == categories.size() - 1) {
+                allCategoriesString.append(curCategory.getTitle());
+            } else {
+                allCategoriesString.append(curCategory.getTitle()).append(", ");
+            }
+        }
+        holder.gameCategory.setText(allCategoriesString.toString());
+
         holder.price.setText(games.get(position).getPrice());
         new DownloadImageTask(holder.thumbnail).execute(games.get(position).getImg());
         holder.whole.setOnClickListener(view -> {

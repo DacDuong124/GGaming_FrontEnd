@@ -1,9 +1,5 @@
 package com.example.ggaming_frontend.models;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -13,28 +9,6 @@ public class Game {
     private String desc;
 
     private String img;
-
-//    public Game(JSONObject object) {
-//        try {
-//            this.title = object.getString("title");
-//            this.desc = object.getString("description");
-//
-//            JSONArray jsonCategories = object.getJSONArray("categories");
-//            ArrayList<Category> categories = new ArrayList<>();
-//            for (int i = 0; i < jsonCategories.length(); i++) {
-//                Category category = new Category(jsonCategories.getJSONObject(i).toString(), "");
-//                System.out.println("cccccccccc: " + category.getTitle());
-//                System.out.println("cccccccccc: " + category.getThumbSrc());
-//                categories.add(category);
-//            }
-//
-//            this.categories = categories;
-//            this.price = object.getString("price");
-////            this.thumbSrc = object.getString("thumbSrc");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public Game() {
     }
