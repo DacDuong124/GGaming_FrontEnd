@@ -87,7 +87,6 @@ public class CartFragment extends Fragment{
         float totalPrice = 0.0F;
         for (Game game : randomGames) {
             totalPrice += Float.parseFloat(game.getPrice());
-            System.out.println("ccc: " + totalPrice);
         }
 
         totalPriceTextView.setText(Float.toString(totalPrice));

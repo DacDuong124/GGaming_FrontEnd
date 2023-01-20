@@ -138,7 +138,6 @@ public class CategoryListActivity extends AppCompatActivity {
     private ArrayList<Game> filterGamesByCategory() {
         Intent intent = getIntent();
         String filterCategory = (String) intent.getExtras().get("category");
-        System.out.println("ccccc: " + filterCategory);
         ArrayList<Game> filteredGames = new ArrayList<>();
 
         for (Game game : games) {
