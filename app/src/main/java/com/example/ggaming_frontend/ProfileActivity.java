@@ -141,7 +141,6 @@ public class ProfileActivity extends AppCompatActivity {
         ageEditText = findViewById(R.id.profileAgeEditText);
         countryEditText = findViewById(R.id.profileCountryEditText);
         updateBtn = findViewById(R.id.profileUpdateBtn);
-        listWishlist = findViewById(R.id.listWishList);
 
         ImageView backActionIcon = findViewById(R.id.backActionIcon);
         backActionIcon.setOnClickListener(view -> {

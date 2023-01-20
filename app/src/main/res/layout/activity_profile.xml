@@ -307,39 +307,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/paymentEditContainer"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="parent">
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wish List"
-                    android:textColor="@color/grey_900"
-                    android:textSize="14dp"
-
-                    />
-                <View
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/divider5"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    android:background="@color/grey_900" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listWishList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
             <Button
                 android:id="@+id/profileUpdateBtn"
                 android:layout_width="188dp"

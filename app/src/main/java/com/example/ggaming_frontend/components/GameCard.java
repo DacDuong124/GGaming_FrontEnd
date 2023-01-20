@@ -68,7 +68,7 @@ public class GameCard extends RecyclerView.Adapter<GameCard.ViewHolder>  {
             Intent intent = new Intent(context, GameDetailActivity.class);
             intent.putExtra(Constants.FSGames.titleField, games.get(position).getTitle());
             intent.putExtra(Constants.FSGames.descField, games.get(position).getDesc());
-            intent.putExtra(Constants.FSGames.categoriesField, games.get(position).getCategories().get(0).getTitle());
+            intent.putExtra(Constants.FSGames.categoriesField, (CharSequence) allCategoriesString);
             intent.putExtra(Constants.FSGames.priceField, games.get(position).getPrice());
             intent.putExtra(Constants.FSGames.imgField, games.get(position).getImg());
             context.startActivity(intent);
