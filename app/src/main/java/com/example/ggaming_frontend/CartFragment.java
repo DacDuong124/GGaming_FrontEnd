@@ -22,10 +22,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Query;
+import androidx.room.Room;
 
 import com.example.ggaming_frontend.components.GameCard;
+import com.example.ggaming_frontend.models.CartItem;
 import com.example.ggaming_frontend.models.Category;
 import com.example.ggaming_frontend.models.Game;
+import com.example.ggaming_frontend.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,10 +57,12 @@ public class CartFragment extends Fragment{
     Dialog point_dialog;
     Button point_button;
     Button card_button;
-
     Dialog card_dialog;
-
     TextView totalPriceTextView;
+    TextView point_price;
+    float totalPrice;
+    String cost;
+
 
     private ArrayList<Category> categories = new ArrayList<>();
 
@@ -76,6 +82,8 @@ public class CartFragment extends Fragment{
         LinearLayoutManager layoutManager= new LinearLayoutManager(CartFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
         mygame_list.setLayoutManager(layoutManager);
         mygame_list.addItemDecoration(new CartFragment.VerticalSpaceItemDecoration(16) );
+
+
         randomGames = new ArrayList<>(pickNRandomElements(games, 2));
         GameCard gameCardView = new GameCard(CartFragment.this.getContext() , randomGames);
         mygame_list.setAdapter(gameCardView);
@@ -84,11 +92,12 @@ public class CartFragment extends Fragment{
 
     @SuppressLint("SetTextI18n")
     private void calculateAndRenderTotalPrice () {
-        float totalPrice = 0.0F;
+        totalPrice = 0.0F;
         for (Game game : randomGames) {
             totalPrice += Float.parseFloat(game.getPrice());
         }
         totalPriceTextView.setText(Float.toString(totalPrice));
+        cost = Float.toString(totalPrice);
     }
 
     public static <E> List<E> pickNRandomElements(List<E> list, int n, Random r) {
@@ -189,6 +198,12 @@ public class CartFragment extends Fragment{
                     point_dialog.dismiss();
                 }
             });
+
+            TextView point_price = point_dialog.findViewById(R.id.item_price);
+            point_price.setText(cost);
+            TextView result_txt = point_dialog.findViewById(R.id.result_txt);
+            float result = 200 - totalPrice ;
+            result_txt.setText(Float.toString(result));
             point_dialog.show();
         });
 

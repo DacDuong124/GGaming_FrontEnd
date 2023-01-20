@@ -27,7 +27,7 @@ public class User {
     public User() {
     }
 
-    public String getDocId() {
+    public  String getDocId() {
         return docId;
     }
 

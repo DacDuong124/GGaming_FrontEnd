@@ -8,9 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import java.io.InputStream;
 
 public class GameDetailActivity extends AppCompatActivity {
@@ -36,6 +37,11 @@ public class GameDetailActivity extends AppCompatActivity {
         descriptionTextView.setText((String) intent.getExtras().get(Constants.FSGames.descField));
         new DownloadImageTask(gameImage).execute((String) intent.getExtras().get(Constants.FSGames.imgField));
 //        new GameCard.DownloadImageTask(holder.thumbnail).execute(games.get(position).getImg());
+    }
+
+    public void onClickAddToCart(View view) {
+        Toast.makeText(GameDetailActivity.this,"Item move to cart!",
+                Toast.LENGTH_SHORT).show();
     }
 
     // ref: https://stackoverflow.com/questions/6407324/how-to-display-image-from-url-on-android
