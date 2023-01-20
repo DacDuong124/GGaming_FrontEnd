@@ -77,13 +77,10 @@ public class CategoryListActivity extends AppCompatActivity {
             finish();
 
         });
-
         Intent intent = getIntent();
         String categoryTitle = (String) intent.getExtras().get("category");
         TextView categoryGameTitle = findViewById(R.id.gameCategoryTitle);
         categoryGameTitle.setText(categoryTitle);
-
-
     }
 
     private void fetchGames() {

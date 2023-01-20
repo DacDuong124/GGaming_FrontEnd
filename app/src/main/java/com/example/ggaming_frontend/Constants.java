@@ -17,7 +17,6 @@ public class Constants {
         public static final String ageField = "age";
         public static final String countryField = "country";
         public static final String emailField = "email";
-
         public static final String paymentCardsField = "paymentCards";
 
         public static final String wishlistField = "wishlist";

@@ -7,7 +7,8 @@
     android:paddingHorizontal="16dp"
     android:paddingTop="20dp"
     android:paddingBottom="80dp"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileActivity"
+    android:background="@drawable/grad1">
     <TextView
         android:id="@+id/mycart"
         android:layout_width="match_parent"

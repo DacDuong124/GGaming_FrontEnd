@@ -2,7 +2,6 @@ package com.example.ggaming_frontend;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,16 +45,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = emailEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
-
                 //Check if the input email or password is empty
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, Constants.ToastMessage.emptyInputError,
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 System.out.println(mAuth);
-
                 //Call FirebaseAuth for authentication process
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -77,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     //Move to user's homepage if successfully logged in
     private void moveToHomePage() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);

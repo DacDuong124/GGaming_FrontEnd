@@ -76,7 +76,7 @@ public class CartFragment extends Fragment{
         LinearLayoutManager layoutManager= new LinearLayoutManager(CartFragment.this.getContext(),LinearLayoutManager.VERTICAL, false);
         mygame_list.setLayoutManager(layoutManager);
         mygame_list.addItemDecoration(new CartFragment.VerticalSpaceItemDecoration(16) );
-        randomGames = new ArrayList<>(pickNRandomElements(games, 3));
+        randomGames = new ArrayList<>(pickNRandomElements(games, 2));
         GameCard gameCardView = new GameCard(CartFragment.this.getContext() , randomGames);
         mygame_list.setAdapter(gameCardView);
         calculateAndRenderTotalPrice();
@@ -88,7 +88,6 @@ public class CartFragment extends Fragment{
         for (Game game : randomGames) {
             totalPrice += Float.parseFloat(game.getPrice());
         }
-
         totalPriceTextView.setText(Float.toString(totalPrice));
     }
 
@@ -263,15 +262,5 @@ public class CartFragment extends Fragment{
             outRect.bottom = verticalSpaceHeight;
         }
     }
-//    public void onClickPoint(View view) {
-//       point_dialog = new Dialog(CartFragment.this.getContext());
-//       point_dialog.setContentView(R.layout.point_dialog);
-//       point_dialog.show();
-//    }
-//
-//    public void onClickCard(View view) {
-//        card_dialog = new Dialog(CartFragment.this.getContext());
-//        card_dialog.setContentView(R.layout.card_dialog);
-//        card_dialog.show();
-//    }
+
 }
